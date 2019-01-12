@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends "first_app/base.html" %}
+{% load staticfiles %}
+{% load my_extras %}
+  {% block title %}
+        <title>Index</title>
+  {% endblock %}
+  {% block body_block %}
+    <div class="jumbotron">
+      <h1>Hello this is index.html</h1>
+      <h2>Goto /formpage to fill out the form</h2>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="{% static 'images/shin.png' %}" alt="kingdom.png">
+          <div class="container">
+            {% if access_record %}
+              <table>
+                <thead>
+                  <th>Name</th>
+                  <th>Date</th>
+                </thead>
+                {% for acc in access_record%}
+              <tr>
+                <td>{{acc.name}}</td>
+                <td>{{acc.date}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+            {% else %}
+              <p>no record</p>
+            {% endif %}
+          </div>
+      </div>
+          <div class="col-sm-6">
+            {{ text|cut:'world' }}
+            {{ number|add:"97" }}
+          </div>
+      </div>
+    </div>
+{% endblock %}
